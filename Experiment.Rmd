@@ -57,8 +57,135 @@ write.table(dummy,file="dummy.txt", quote = FALSE)
 ```
 Backup Created.
 
-Begin description of dataset.
+Begin description of data table. Write results to txt file.
 ```{r}
+original_dataset<-dummy
+variables<-colnames(original_dataset)
+original_dataset$id<-NULL #remove ids to prevent interference with data
+dfname <- deparse(substitute(dummy)) #variable with the name of data table
+#make sex variables categorical
+original_dataset$Sex[original_dataset$Sex==1]<-"male"
+original_dataset$Sex[original_dataset$Sex==0]<-"female"
+#Create a log text file with the description of data table
+fileConn=paste0("README_", dfname,"_decription.txt") #Create a log file
+cat("Data that is processed is:", dfname,"\n",file=fileConn, sep= " ",  append = TRUE) #Identification of source data
+cat("\n Number of individuals:", dim(original_dataset)[1], "\n",file=fileConn, sep= " ",  append = TRUE) #Number of individuals
+cat("\n Number of Variables:", dim(original_dataset)[2], "\n",file=fileConn, sep= " ",  append = TRUE) #Number of variables
+#Calculate Number of Males
+cat("\n Number of Males:", length(original_dataset$Sex[original_dataset$Sex=="male"]), "\n",file=fileConn, sep= " ",  append = TRUE)
+#Calculate Number of Females
+cat("\n Number of Females:", length(original_dataset$Sex[original_dataset$Sex=="female"]), "\n",file=fileConn, sep= " ",  append = TRUE)
+
+
+for (i in colnames(original_dataset)) {
+  cat("\n Mean of ",i,":", mean(original_dataset[[i]]), "\n",file=fileConn, sep= " ",  append = TRUE)
+  cat("\n Min of ",i,":", min(original_dataset[[i]]), "\n",file=fileConn, sep= " ",  append = TRUE)
+  cat("\n Max of ",i,":", max(original_dataset[[i]]), "\n",file=fileConn, sep= " ",  append = TRUE)
+  cat("\n Range of ",i,":", range(original_dataset[[i]]), "\n",file=fileConn, sep= " ",  append = TRUE)
+}
+
+
+
+
+#BMI Distribution Plot
+pdf((paste0("Distribution plot of BMI.pdf")),width = 8,  height = 11)
+  # The Distribution Plot
+ggplot(original_dataset, aes(x=BMI,fill=Sex)) + geom_density(alpha=.5)
+#ggplot(dat, aes(x=rating, fill=cond)) + geom_density(alpha=.3)
+dev.off()
+
+#age Distribution Plot
+pdf((paste0("Distribution plot of age.pdf")),width = 8,  height = 11)
+  # The Distribution Plot
+ggplot(original_dataset, aes(x=age,fill=Sex)) + geom_density(alpha=.5)
+#ggplot(dat, aes(x=rating, fill=cond)) + geom_density(alpha=.3)
+dev.off()
+
+
+
+#Metabolite 1 Distribution Plot
+pdf((paste0("Distribution plot of Metabolite 1.pdf")),width = 8,  height = 11)
+  # The Distribution Plot
+ggplot(original_dataset, aes(x=Metabolite_1,fill=Sex)) + geom_density(alpha=.5)
+#ggplot(dat, aes(x=rating, fill=cond)) + geom_density(alpha=.3)
+dev.off()
+
+#Metabolite 2 Plot
+pdf((paste0("Distribution plot of Metabolite 2.pdf")),width = 8,  height = 11)
+  # The Distribution Plot
+ggplot(original_dataset, aes(x=Metabolite_2,fill=Sex)) + geom_density(alpha=.5)
+#ggplot(dat, aes(x=rating, fill=cond)) + geom_density(alpha=.3)
+dev.off()
+
+#Metabolite 3 Distribution Plot
+pdf((paste0("Distribution plot of Metabolite 3.pdf")),width = 8,  height = 11)
+  # The Distribution Plot
+ggplot(original_dataset, aes(x=Metabolite_3,fill=Sex)) + geom_density(alpha=.5)
+#ggplot(dat, aes(x=rating, fill=cond)) + geom_density(alpha=.3)
+dev.off()
 
 ```
+Initial data description created and log file written.
+Begin analysis stage.
+Linear Regression and Scatter Plot.
+```{r}
+variables2<-original_dataset[,c(4:6)]
 
+for (q in colnames(variables2)) { 
+mx<-lm(variables2[[q]] ~ Sex + BMI + age, data = original_dataset)
+
+sink(paste0("README_",q,"_LM_decription.txt"))
+print(summary(mx))
+close=fileConn
+}
+
+#Scatter Plots vs BMI
+pdf((paste0("Scatter plot Metabolite 1 vs BMI.pdf")),  width = 4,  height = 4)
+ggplot(dummy, aes(x=BMI, y=Metabolite_1)) + geom_point() + geom_smooth(method=lm, color="red", se=TRUE)
+dev.off()
+
+pdf((paste0("Scatter plot Metabolite 2 vs BMI.pdf")),  width = 4,  height = 4)
+ggplot(dummy, aes(x=BMI, y=Metabolite_2)) + geom_point() + geom_smooth(method=lm, color="red", se=TRUE)
+dev.off()
+
+pdf((paste0("Scatter plot Metabolite 3 vs BMI.pdf")),  width = 4,  height = 4)
+ggplot(dummy, aes(x=BMI, y=Metabolite_3)) + geom_point() + geom_smooth(method=lm, color="red", se=TRUE)
+dev.off()
+
+#Scatter Plots vs age
+
+pdf((paste0("Scatter plot Metabolite 1 vs age.pdf")),  width = 4,  height = 4)
+ggplot(dummy, aes(x=age, y=Metabolite_1)) + geom_point() + geom_smooth(method=lm, color="red", se=TRUE)
+dev.off()
+
+pdf((paste0("Scatter plot Metabolite 2 vs age.pdf")),  width = 4,  height = 4)
+ggplot(dummy, aes(x=age, y=Metabolite_2)) + geom_point() + geom_smooth(method=lm, color="red", se=TRUE)
+dev.off()
+
+pdf((paste0("Scatter plot Metabolite 3 vs age.pdf")),  width = 4,  height = 4)
+ggplot(dummy, aes(x=age, y=Metabolite_3)) + geom_point() + geom_smooth(method=lm, color="red", se=TRUE)
+dev.off()
+
+#Scatter Plots vs sex
+
+pdf((paste0("Scatter plot Metabolite 1 vs sex.pdf")),  width = 4,  height = 4)
+ggplot(dummy, aes(x=Sex, y=Metabolite_1)) + geom_point() + geom_smooth(method=lm, color="red", se=TRUE)
+dev.off()
+
+pdf((paste0("Scatter plot Metabolite 2 vs age.pdf")),  width = 4,  height = 4)
+ggplot(dummy, aes(x=Sex, y=Metabolite_2)) + geom_point() + geom_smooth(method=lm, color="red", se=TRUE)
+dev.off()
+
+pdf((paste0("Scatter plot Metabolite 3 vs age.pdf")),  width = 4,  height = 4)
+ggplot(dummy, aes(x=Sex, y=Metabolite_3)) + geom_point() + geom_smooth(method=lm, color="red", se=TRUE)
+dev.off()
+```
+
+Analysis complete. 
+From distribution plot, it seems that metabolite 3 level is higher in men.
+From linear regression analysis it seems that levels of Metabolite 3 is dependent on BMI and SEX as seen through regression analysis. *As was created in simulated data.
+
+
+SHAMELESS DISCLAIMER: Researcher knows a faster way to complete the analysis through use of loops, but his R packages went haywire on the moment of the beigining of the test.
+
+Test Completion Time: 20:55 (BST)
