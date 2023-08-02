@@ -1762,28 +1762,30 @@ pre code {
 
 <!-- rnb-text-begin -->
 <p>There were a total of 100 participants who gave blood to screen for
-specific metabolites in blood, that were previosly unknown. Additionaly,
-they filled questionnaires where they recorded their biological sex, age
-and BMI. It is a task of researcher to identify they</p>
+specific metabolites in blood, that were previously unknown.
+Additionally, they filled questionnaires where they recorded their
+biological sex, age and BMI. It is a task of researcher to identify the
+characteristics of those new molecules.</p>
+<p>#Researcher Note. Enable required packages to prepare workspace</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxvdChjYXJzKVxuYGBgIn0= -->
-<pre class="r"><code>plot(cars)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5saWJyYXJ5KGdncGxvdDIpI1BhY2thZ2UgZm9yIHBsb3R0aW5nIGFuZCBncmFwaGljc1xubGlicmFyeShzaW1zdHVkeSkjSGFuZHkgcGFja2FnZSBmb3Igc2ltdWxhdGluZyBkYXRhIHNldHNcbmxpYnJhcnkoZHBseXIpXG5saWJyYXJ5KHRpZHl2ZXJzZSlcbmBgYCJ9 -->
+<pre class="r"><code>
+library(ggplot2)#Package for plotting and graphics
+library(simstudy)#Handy package for simulating data sets
+library(dplyr)
+library(tidyverse)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Add a new chunk by clicking the <em>Insert Chunk</em> button on the
-toolbar or by pressing <em>Ctrl+Alt+I</em>.</p>
-<p>When you save the notebook, an HTML file containing the code and
-output will be saved alongside it (click the <em>Preview</em> button or
-press <em>Ctrl+Shift+K</em> to preview the HTML file).</p>
-<p>The preview shows you a rendered HTML copy of the contents of the
-editor. Consequently, unlike <em>Knit</em>, <em>Preview</em> does not
-run any R code chunks. Instead, the output of the chunk when it was last
-run in the editor is displayed.</p>
+<p>Workspace was prepared.</p>
+<p>#simmulating a dataset. Creating a variables that will be dependent
+on participant sex, age and BMI.</p>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-chunk-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkEgVGltZWQgVGVzdCINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KQXV0aG9yOiBJZ29yIFB1cGtvDQotLS0NCg0KVGhlcmUgd2VyZSBhIHRvdGFsIG9mIDEwMCBwYXJ0aWNpcGFudHMgd2hvIGdhdmUgYmxvb2QgdG8gc2NyZWVuIGZvciBzcGVjaWZpYyBtZXRhYm9saXRlcyBpbiBibG9vZCwgdGhhdCB3ZXJlIHByZXZpb3NseSB1bmtub3duLiBBZGRpdGlvbmFseSwgdGhleSBmaWxsZWQgcXVlc3Rpb25uYWlyZXMgd2hlcmUgdGhleSByZWNvcmRlZCB0aGVpciBiaW9sb2dpY2FsIHNleCwgYWdlIGFuZCBCTUkuIEl0IGlzIGEgdGFzayBvZiByZXNlYXJjaGVyIHRvIGlkZW50aWZ5IHRoZXkgDQoNCmBgYHtyfQ0KcGxvdChjYXJzKQ0KYGBgDQoNCkFkZCBhIG5ldyBjaHVuayBieSBjbGlja2luZyB0aGUgKkluc2VydCBDaHVuayogYnV0dG9uIG9uIHRoZSB0b29sYmFyIG9yIGJ5IHByZXNzaW5nICpDdHJsK0FsdCtJKi4NCg0KV2hlbiB5b3Ugc2F2ZSB0aGUgbm90ZWJvb2ssIGFuIEhUTUwgZmlsZSBjb250YWluaW5nIHRoZSBjb2RlIGFuZCBvdXRwdXQgd2lsbCBiZSBzYXZlZCBhbG9uZ3NpZGUgaXQgKGNsaWNrIHRoZSAqUHJldmlldyogYnV0dG9uIG9yIHByZXNzICpDdHJsK1NoaWZ0K0sqIHRvIHByZXZpZXcgdGhlIEhUTUwgZmlsZSkuDQoNClRoZSBwcmV2aWV3IHNob3dzIHlvdSBhIHJlbmRlcmVkIEhUTUwgY29weSBvZiB0aGUgY29udGVudHMgb2YgdGhlIGVkaXRvci4gQ29uc2VxdWVudGx5LCB1bmxpa2UgKktuaXQqLCAqUHJldmlldyogZG9lcyBub3QgcnVuIGFueSBSIGNvZGUgY2h1bmtzLiBJbnN0ZWFkLCB0aGUgb3V0cHV0IG9mIHRoZSBjaHVuayB3aGVuIGl0IHdhcyBsYXN0IHJ1biBpbiB0aGUgZWRpdG9yIGlzIGRpc3BsYXllZC4NCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkEgVGltZWQgVGVzdCINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KQXV0aG9yOiBJZ29yIFB1cGtvDQp0ZXN0IHN0YXJ0OiAxOTo0Ng0KLS0tDQoNClRoZXJlIHdlcmUgYSB0b3RhbCBvZiAxMDAgcGFydGljaXBhbnRzIHdobyBnYXZlIGJsb29kIHRvIHNjcmVlbiBmb3Igc3BlY2lmaWMgbWV0YWJvbGl0ZXMgaW4gYmxvb2QsIHRoYXQgd2VyZSBwcmV2aW91c2x5IHVua25vd24uIEFkZGl0aW9uYWxseSwgdGhleSBmaWxsZWQgcXVlc3Rpb25uYWlyZXMgd2hlcmUgdGhleSByZWNvcmRlZCB0aGVpciBiaW9sb2dpY2FsIHNleCwgYWdlIGFuZCBCTUkuIEl0IGlzIGEgdGFzayBvZiByZXNlYXJjaGVyIHRvIGlkZW50aWZ5IHRoZSBjaGFyYWN0ZXJpc3RpY3Mgb2YgdGhvc2UgbmV3IG1vbGVjdWxlcy4gDQoNCg0KI1Jlc2VhcmNoZXIgTm90ZS4gRW5hYmxlIHJlcXVpcmVkIHBhY2thZ2VzIHRvIHByZXBhcmUgd29ya3NwYWNlDQoNCmBgYHtyfQ0KDQpsaWJyYXJ5KGdncGxvdDIpI1BhY2thZ2UgZm9yIHBsb3R0aW5nIGFuZCBncmFwaGljcw0KbGlicmFyeShzaW1zdHVkeSkjSGFuZHkgcGFja2FnZSBmb3Igc2ltdWxhdGluZyBkYXRhIHNldHMNCmxpYnJhcnkoZHBseXIpDQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCmBgYA0KDQpXb3Jrc3BhY2Ugd2FzIHByZXBhcmVkLiANCg0KI3NpbW11bGF0aW5nIGEgZGF0YXNldC4gQ3JlYXRpbmcgYSB2YXJpYWJsZXMgdGhhdCB3aWxsIGJlIGRlcGVuZGVudCBvbiBwYXJ0aWNpcGFudCBzZXgsIGFnZSBhbmQgQk1JLg0KYGBge3J9DQojQ3JlYXRlIGEgZHVtbXkgZGF0YSBzZXQNCiNDcmVhdGluZyBkdW1teSBhZ2UgdmFyaWFibGUNCmRlZiA8LSBkZWZEYXRhKHZhcm5hbWUgPSAiYWdlIiwgZGlzdCA9ICJub3JtYWwiLCBmb3JtdWxhID0gMjQsDQogICAgICAgICAgICAgICB2YXJpYW5jZSA9IDIpDQojQ3JlYXRpbmcgZHVtbXkgU2V4IHZhcmlhYmxlLCB1c2luZyBhZ2UgYXMgc2VlZA0KZGVmIDwtIGRlZkRhdGEoZGVmLCB2YXJuYW1lID0gIlNleCIsIGRpc3QgPSAiYmluYXJ5IiwNCiAgICAgICAgICAgICAgIGZvcm11bGEgPSAiLTIgKyBhZ2UgKiAwLjA4MyIsIGxpbmsgPSAibG9naXQiKQ0KDQoNCmBgYA0K</div>
 
 
 
