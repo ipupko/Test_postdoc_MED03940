@@ -2,16 +2,33 @@
 title: "A Timed Test"
 output: html_notebook
 Author: Igor Pupko
+test start: 19:46
 ---
 
-There were a total of 100 participants who gave blood to screen for specific metabolites in blood, that were previosly unknown. Additionaly, they filled questionnaires where they recorded their biological sex, age and BMI. It is a task of researcher to identify they 
+There were a total of 100 participants who gave blood to screen for specific metabolites in blood, that were previously unknown. Additionally, they filled questionnaires where they recorded their biological sex, age and BMI. It is a task of researcher to identify the characteristics of those new molecules. 
+
+
+#Researcher Note. Enable required packages to prepare workspace
 
 ```{r}
-plot(cars)
+
+library(ggplot2)#Package for plotting and graphics
+library(simstudy)#Handy package for simulating data sets
+library(dplyr)
+library(tidyverse)
 ```
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+Workspace was prepared. 
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+#simmulating a dataset. Creating a variables that will be dependent on participant sex, age and BMI.
+```{r}
+#Create a dummy data set
+#Creating dummy age variable
+def <- defData(varname = "age", dist = "normal", formula = 24,
+               variance = 2)
+#Creating dummy Sex variable, using age as seed
+def <- defData(def, varname = "Sex", dist = "binary",
+               formula = "-2 + age * 0.083", link = "logit")
 
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+```
