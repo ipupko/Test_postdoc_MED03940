@@ -1,8 +1,10 @@
 ---
 title: "A Timed Test"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 Author: Igor Pupko
-test start: 19:46
+test start: '19:46'
 ---
 
 There were a total of 100 participants who gave blood to screen for specific metabolites in blood, that were previously unknown. Additionally, they filled questionnaires where they recorded their biological sex, age and BMI. It is a task of researcher to identify the characteristics of those new molecules. 
@@ -20,7 +22,7 @@ library(tidyverse)
 
 Workspace was prepared. 
 
-#simmulating a dataset. Creating a variables that will be dependent on study participant's sex, age and BMI.
+#simulating a dataset. Creating a variables that will be dependent on study participant's sex, age and BMI.
 ```{r}
 #Create a dummy data set
 #Creating dummy age variable
@@ -48,3 +50,15 @@ dummy$age<-round(dummy$age) # For simpler data
 
 ```
 #Simulted date table with participant information was created.
+Creating a local txt backup.
+```{r}
+#Create a backup text file for the table
+write.table(dummy,file="dummy.txt", quote = FALSE)
+```
+Backup Created.
+
+Begin description of dataset.
+```{r}
+
+```
+
