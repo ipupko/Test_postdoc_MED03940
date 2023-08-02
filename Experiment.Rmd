@@ -20,7 +20,7 @@ library(tidyverse)
 
 Workspace was prepared. 
 
-#simmulating a dataset. Creating a variables that will be dependent on participant sex, age and BMI.
+#simmulating a dataset. Creating a variables that will be dependent on study participant's sex, age and BMI.
 ```{r}
 #Create a dummy data set
 #Creating dummy age variable
@@ -29,6 +29,22 @@ def <- defData(varname = "age", dist = "normal", formula = 24,
 #Creating dummy Sex variable, using age as seed
 def <- defData(def, varname = "Sex", dist = "binary",
                formula = "-2 + age * 0.083", link = "logit")
-
+#Creating Dummy BMI Variable
+def <- defData(def, varname = "BMI", dist = "normal",
+               formula = 22, variance=2)
+#Creating Dummy Metabolic Variable 1, depends on BMI and age
+def <- defData(def, varname = "Metabolite_1", dist = "normal",
+                formula = "1.5 - 0.3 * age + 2 * BMI", link = "log")
+#Creating Dummy Metabolic Variable 2, depends on BMI and sex
+def <- defData(def, varname = "Metabolite_2", dist = "normal",
+                formula = "4.8 - 0.1 * Sex + 21.7 * BMI", link = "log")
+#Creating Dummy Metabolic Variable 3, depends on BMI and sex
+  def <- defData(def, varname = "Metabolite_3", dist = "normal",
+                formula = "3.1 + 15.1 * BMI + 2.4 * Sex", variance = 15)
+#create a data table
+set.seed(42) #Random number as seed,a pop-culture reference
+dummy<-genData(100,def) #Generate dummy data set
+dummy$age<-round(dummy$age) # For simpler data
 
 ```
+#Simulted date table with participant information was created.
